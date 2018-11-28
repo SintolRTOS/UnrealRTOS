@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\UnrealRTOS.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{FD906DA9-A96D-43D1-8276-D03B44D4E865}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\UnrealRTOS.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\UnrealRTOSEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{68F413C8-60A7-474E-A8A3-72E9A106318D}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\UnrealRTOS">
+      <UniqueIdentifier>{5EEE209F-5BF2-4135-9549-F7D45545BC51}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\UnrealRTOS\UnrealRTOS.Build.cs">
+      <Filter>Source\UnrealRTOS</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\UnrealRTOS\UnrealRTOS.cpp">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealRTOS\UnrealRTOS.h">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\UnrealRTOS\UnrealRTOSCharacter.cpp">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealRTOS\UnrealRTOSCharacter.h">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\UnrealRTOS\UnrealRTOSGameMode.cpp">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealRTOS\UnrealRTOSGameMode.h">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\ThirdParty\SDKManager.h">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UnrealRTOS\UnrealRTOSAmbassador.h">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

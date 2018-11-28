@@ -1,0 +1,18 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-UnrealRTOS.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"d:\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
+"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\UnrealRTOS.cpp.obj"
+"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\UnrealRTOSCharacter.cpp.obj"
+"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\UnrealRTOSGameMode.cpp.obj"
+"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\UnrealRTOS.init.gen.cpp.obj"
+"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\UnrealRTOSCharacter.gen.cpp.obj"
+"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\UnrealRTOSGameMode.gen.cpp.obj"
+"d:\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\PCLaunch.rc.res"
+"d:\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\ModuleVersionResource.rc.inl.res"
+/OUT:"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS.lib"

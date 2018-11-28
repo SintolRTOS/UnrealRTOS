@@ -1,0 +1,74 @@
+/MANIFEST:NO
+/NOLOGO
+/DEBUG
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/FIXED:No
+/NXCOMPAT
+/STACK:5000000
+/DELAY:UNLOAD
+/DLL
+/PDBALTPATH:%_PDB%
+/OPT:NOREF
+/OPT:NOICF
+/INCREMENTAL:NO
+/ignore:4199
+/ignore:4099
+/DELAYLOAD:"d3d12.dll"
+/NODEFAULTLIB:"LIBCMT"
+/NODEFAULTLIB:"LIBCPMT"
+/NODEFAULTLIB:"LIBCMTD"
+/NODEFAULTLIB:"LIBCPMTD"
+/NODEFAULTLIB:"MSVCRTD"
+/NODEFAULTLIB:"MSVCPRTD"
+/NODEFAULTLIB:"LIBC"
+/NODEFAULTLIB:"LIBCP"
+/NODEFAULTLIB:"LIBCD"
+/NODEFAULTLIB:"LIBCPD"
+"d:\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
+"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\UnrealRTOS.cpp.obj"
+"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\UnrealRTOSCharacter.cpp.obj"
+"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\UnrealRTOSGameMode.cpp.obj"
+"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\UnrealRTOS.init.gen.cpp.obj"
+"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\UnrealRTOSCharacter.gen.cpp.obj"
+"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\UnrealRTOSGameMode.gen.cpp.obj"
+"d:\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\UnrealRTOS\PCLaunch.rc.res"
+"d:\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\ModuleVersionResource.rc.inl.res"
+"delayimp.lib"
+"wininet.lib"
+"rpcrt4.lib"
+"ws2_32.lib"
+"dbghelp.lib"
+"comctl32.lib"
+"Winmm.lib"
+"kernel32.lib"
+"user32.lib"
+"gdi32.lib"
+"winspool.lib"
+"comdlg32.lib"
+"advapi32.lib"
+"shell32.lib"
+"ole32.lib"
+"oleaut32.lib"
+"uuid.lib"
+"odbc32.lib"
+"odbccp32.lib"
+"netapi32.lib"
+"iphlpapi.lib"
+"setupapi.lib"
+"dwmapi.lib"
+"imm32.lib"
+"D:\SintolRTOS\UnrealRTOS\ThirdParty\lib\sintolsdk.lib"
+"D:\SintolRTOS\UnrealRTOS\ThirdParty\lib\SintolRTI.lib"
+"D:\SintolRTOS\UnrealRTOS\ThirdParty\lib\rti1516.lib"
+"D:\SintolRTOS\UnrealRTOS\ThirdParty\lib\fedtime1516.lib"
+"d:\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Core.lib"
+"d:\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-CoreUObject.lib"
+"d:\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Engine.lib"
+"d:\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-InputCore.lib"
+"d:\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-HeadMountedDisplay.lib"
+/OUT:"D:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS.dll"
+/IMPLIB:"D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS.suppressed.lib"
+/PDB:"D:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS.pdb"
+/ignore:4078
