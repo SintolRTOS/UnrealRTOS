@@ -52,7 +52,7 @@ void AUnrealRTOSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	_ambassador = new SintolRTI::UnrealRTOSAmbassador();
-	SintolRTI::SDKManager::GetInstance()->InitSDK(*_ambassador, L"UnrealRTOS", L"MultiAI", L"D:/SintolRTOS/SintolRTOS/tests/rti1516/fddget/fdd-1.xml", L"127.0.0.1:14321");
+	SintolRTI::SDKManager::GetInstance()->InitSDK(*_ambassador, L"UnrealRTOS", L"MultiAI", L"/multiAI.xml", L"127.0.0.1:14321");
 }
 
 void AUnrealRTOSCharacter::Tick(float DeltaSeconds)
