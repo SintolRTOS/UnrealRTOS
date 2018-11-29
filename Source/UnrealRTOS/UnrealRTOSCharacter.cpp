@@ -52,18 +52,65 @@ void AUnrealRTOSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	_ambassador = new SintolRTI::UnrealRTOSAmbassador();
-	SintolRTI::SDKManager::GetInstance()->InitSDK(*_ambassador, L"UnrealRTOS", L"MultiAI", L"/multiAI.xml", L"127.0.0.1:14321");
+	rti1516::AttributeHandleSet _attributionset;
+	SintolRTI::SDKManager::GetInstance()->InitSDK(*_ambassador, L"UnrealRTOS", L"MultiAI", L"D:/SintolRTOS/UnrealRTOS/Binaries/Win64/multiAI.xml", L"127.0.0.1:14321");
+	try {
+		_characterObjHandle = SintolRTI::SDKManager::GetInstance()->getObjectClassHandle(L"MultiEntity");
+		_characterAttributeHandle = SintolRTI::SDKManager::GetInstance()->getAttributeHandle(_characterObjHandle, L"playerAttribution");
+		_attributionset.insert(_characterAttributeHandle);
+	}
+	catch (const rti1516::Exception& e) {
+		std::wcout << L"rti1516::Exception: \"" << e.what() << L"\"" << std::endl;
+		return;
+	}
+	catch (...) {
+		std::wcout << L"Unknown Exception!" << std::endl;
+		return;
+	}
+
+	try {
+		SintolRTI::SDKManager::GetInstance()->publishObjectClassAttributes(_characterObjHandle, _attributionset);
+		SintolRTI::SDKManager::GetInstance()->subscribeObjectClassAttributes(_characterObjHandle, _attributionset);
+		_charactorObjInstance = SintolRTI::SDKManager::GetInstance()->registerObjectInstance(_characterObjHandle);
+	}
+	catch (const rti1516::Exception& e) {
+		std::wcout << L"rti1516::Exception: \"" << e.what() << L"\"" << std::endl;
+		return;
+	}
+	catch (...) {
+		std::wcout << L"Unknown Exception!" << std::endl;
+		return;
+	}
 }
 
 void AUnrealRTOSCharacter::Tick(float DeltaSeconds)
 {
 	_invervalTime += DeltaSeconds;
+	FVector _charactorLocation = GetActorLocation();
+	FString _locationstr = _charactorLocation.ToString();
+	std::string _locationattri(TCHAR_TO_UTF8(*_locationstr));
+	rti1516::AttributeHandleValueMap _attributeValueMap;
+	rti1516::VariableLengthData tag = toVariableLengthData("MultiAI_01");
+	_attributeValueMap[_characterAttributeHandle] = toVariableLengthData(_locationattri);
+	SintolRTI::SDKManager::GetInstance()->updateAttributeValues(_charactorObjInstance, _attributeValueMap, tag);
 	SintolRTI::SDKManager::GetInstance()->Update(DeltaSeconds);
 }
 
 void AUnrealRTOSCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
+	try {
+		SintolRTI::SDKManager::GetInstance()->deleteObjectInstance(_charactorObjInstance, toVariableLengthData("MultiAI_01"));
+		SintolRTI::SDKManager::GetInstance()->unsubscribeObjectClass(_characterObjHandle);
+	}
+	catch (const rti1516::Exception& e) {
+		std::wcout << L"rti1516::Exception: \"" << e.what() << L"\"" << std::endl;
+		return;
+	}
+	catch (...) {
+		std::wcout << L"Unknown Exception!" << std::endl;
+		return;
+	}
 	SintolRTI::SDKManager::GetInstance()->StopSDK();
 	if (NULL != _ambassador)
 	{
@@ -101,6 +148,13 @@ void AUnrealRTOSCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AUnrealRTOSCharacter::OnResetVR);
 }
 
+
+rti1516::VariableLengthData AUnrealRTOSCharacter::toVariableLengthData(const std::string& s)
+{
+	rti1516::VariableLengthData variableLengthData;
+	variableLengthData.setData(s.data(), (unsigned long)s.size());
+	return variableLengthData;
+}
 
 void AUnrealRTOSCharacter::OnResetVR()
 {

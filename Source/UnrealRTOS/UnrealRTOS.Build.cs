@@ -11,6 +11,8 @@ public class UnrealRTOS : ModuleRules
 
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay" });
 
+        bEnableExceptions = true;
+
         PublicIncludePaths.Add(Path.Combine(ThirdPartyPath, "include"));
         PublicIncludePaths.Add(Path.Combine(ThirdPartyPath, "include", "rti1516"));
         PublicIncludePaths.Add(Path.Combine(ThirdPartyPath, "include", "SintolRTI"));

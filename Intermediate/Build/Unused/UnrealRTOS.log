@@ -1,4 +1,19 @@
 ﻿  Using 'git status' to determine working set for adaptive non-unity build.
-  Target is up to date
-  Deploying UnrealRTOSEditor Win64 Development...
-  Total build time: 12.94 seconds (NoActionsToExecute executor: 0.00 seconds)
+  Creating makefile for hot reloading UnrealRTOSEditor (changes to module files)
+  Compiling game modules for hot reload
+  Parsing headers for UnrealRTOSEditor
+    Running UnrealHeaderTool "D:\SintolRTOS\UnrealRTOS\UnrealRTOS.uproject" "D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UnrealRTOSEditor\Development\UnrealRTOSEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
+  Reflection code generated for UnrealRTOSEditor in 32.0747834 seconds
+  Performing 8 actions (4 in parallel)
+cl : 命令行 warning D9002: cl: 命令行 warning D9002 :忽略未知选项“/source-charset:utf-8”cl: 命令行 warning D9002 :忽略未知选项“/source-charset:utf-8”忽略未知选项“/source-charset:utf-8”
+  
+  
+cl : 命令行 warning D9002: cl: 命令行 warning D9002 :cl: 命令行 warning D9002 :忽略未知选项“/execution-charset:utf-8”忽略未知选项“/execution-charset:utf-8”忽略未知选项“/execution-charset:utf-8”
+  
+  
+  UnrealRTOSGameMode.cpp
+  UnrealRTOSCharacter.cpp
+  UnrealRTOS.init.gen.cpp
+cl : 命令行 warning D9002: 忽略未知选项“/source-charset:utf-8”
+cl : 命令行 warning D9002: 忽略未知选项“/execution-charset:utf-8”
+  UnrealRTOS.cpp

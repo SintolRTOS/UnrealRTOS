@@ -39,6 +39,9 @@ public:
 protected:
 
 	float _invervalTime;
+	rti1516::ObjectClassHandle _characterObjHandle;
+	rti1516::AttributeHandle _characterAttributeHandle;
+	rti1516::ObjectInstanceHandle _charactorObjInstance;
 
 	SintolRTI::UnrealRTOSAmbassador* _ambassador;
 
@@ -73,6 +76,7 @@ protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	// End of APawn interface
+	rti1516::VariableLengthData toVariableLengthData(const std::string& s);
 
 public:
 	/** Returns CameraBoom subobject **/

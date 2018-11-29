@@ -1,3 +1,3 @@
-d:\SintolRTOS\UnrealRTOS\Source\UnrealRTOS\UnrealRTOS.Build.cs
-d:\SintolRTOS\UnrealRTOS\Source\UnrealRTOS.Target.cs
-d:\SintolRTOS\UnrealRTOS\Source\UnrealRTOSEditor.Target.cs
+D:\SintolRTOS\UnrealRTOS\Source\UnrealRTOS\UnrealRTOS.Build.cs
+D:\SintolRTOS\UnrealRTOS\Source\UnrealRTOS.Target.cs
+D:\SintolRTOS\UnrealRTOS\Source\UnrealRTOSEditor.Target.cs
