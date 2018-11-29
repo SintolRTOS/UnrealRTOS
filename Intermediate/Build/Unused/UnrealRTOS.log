@@ -17,3 +17,27 @@ cl : 命令行 warning D9002: cl: 命令行 warning D9002 :cl: 命令行 warning
 cl : 命令行 warning D9002: 忽略未知选项“/source-charset:utf-8”
 cl : 命令行 warning D9002: 忽略未知选项“/execution-charset:utf-8”
   UnrealRTOS.cpp
+cl : 命令行 warning D9002: 忽略未知选项“/source-charset:utf-8”
+cl : 命令行 warning D9002: 忽略未知选项“/execution-charset:utf-8”
+  UnrealRTOSCharacter.gen.cpp
+cl : 命令行 warning D9002: 忽略未知选项“/source-charset:utf-8”
+cl : 命令行 warning D9002: 忽略未知选项“/execution-charset:utf-8”
+  UnrealRTOSGameMode.gen.cpp
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(40): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(40): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(40): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+  
+  
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(52): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(52): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(52): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+  
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(96): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(96): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(135): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(96): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(135): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(135): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+  [7/8] Link UE4Editor-UnrealRTOS-7899.dll
+  [8/8] Link UE4Editor-UnrealRTOS-7899.lib
+    ���ڴ����� D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS-7899.lib �Ͷ��� D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS-7899.exp
+    ���ڴ����� D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS-7899.suppressed.lib �Ͷ��� D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS-7899.suppressed.exp
+  Deploying UnrealRTOSEditor Win64 Development...
+  Total build time: 555.26 seconds (Local executor: 355.47 seconds)
