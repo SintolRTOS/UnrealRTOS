@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "UnrealRTOSAmbassador.h"
+#include "EntityManager.h"
+#include "EntityCharacter.h"
 #include "UnrealRTOSCharacter.generated.h"
 
 UCLASS(config=Game)
@@ -30,6 +32,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
+	UPROPERTY(EditAnyWhere, AdvancedDisplay, BlueprintReadWrite, Category = TempleCharactor)
+	TSubclassOf<AEntityCharacter> TempleCharactor;
+
 	virtual void BeginPlay() override;
 
 	virtual void Tick(float DeltaSeconds) override;
@@ -39,6 +44,7 @@ public:
 protected:
 
 	float _invervalTime;
+	std::string _fedTypeName;
 	rti1516::ObjectClassHandle _characterObjHandle;
 	rti1516::AttributeHandle _characterAttributeHandle;
 	rti1516::ObjectInstanceHandle _charactorObjInstance;

@@ -17,6 +17,8 @@ void EmptyLinkFunctionForGeneratedCodeUnrealRTOSCharacter() {}
 	UNREALRTOS_API UClass* Z_Construct_UClass_AUnrealRTOSCharacter();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	UPackage* Z_Construct_UPackage__Script_UnrealRTOS();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	UNREALRTOS_API UClass* Z_Construct_UClass_AEntityCharacter_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 // End Cross Module References
@@ -43,6 +45,13 @@ void EmptyLinkFunctionForGeneratedCodeUnrealRTOSCharacter() {}
 				{ "ModuleRelativePath", "UnrealRTOSCharacter.h" },
 			};
 #endif
+#if WITH_METADATA
+			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_TempleCharactor_MetaData[] = {
+				{ "Category", "TempleCharactor" },
+				{ "ModuleRelativePath", "UnrealRTOSCharacter.h" },
+			};
+#endif
+			static const UE4CodeGen_Private::FClassPropertyParams NewProp_TempleCharactor = { UE4CodeGen_Private::EPropertyClass::Class, "TempleCharactor", RF_Public|RF_Transient|RF_MarkAsNative, 0x0014040000000005, 1, nullptr, STRUCT_OFFSET(AUnrealRTOSCharacter, TempleCharactor), Z_Construct_UClass_AEntityCharacter_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(NewProp_TempleCharactor_MetaData, ARRAY_COUNT(NewProp_TempleCharactor_MetaData)) };
 #if WITH_METADATA
 			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BaseLookUpRate_MetaData[] = {
 				{ "Category", "Camera" },
@@ -80,6 +89,7 @@ void EmptyLinkFunctionForGeneratedCodeUnrealRTOSCharacter() {}
 #endif
 			static const UE4CodeGen_Private::FObjectPropertyParams NewProp_CameraBoom = { UE4CodeGen_Private::EPropertyClass::Object, "CameraBoom", RF_Public|RF_Transient|RF_MarkAsNative, 0x00400000000a001d, 1, nullptr, STRUCT_OFFSET(AUnrealRTOSCharacter, CameraBoom), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(NewProp_CameraBoom_MetaData, ARRAY_COUNT(NewProp_CameraBoom_MetaData)) };
 			static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[] = {
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_TempleCharactor,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_BaseLookUpRate,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_BaseTurnRate,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_FollowCamera,
@@ -103,7 +113,7 @@ void EmptyLinkFunctionForGeneratedCodeUnrealRTOSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AUnrealRTOSCharacter, 3488666417);
+	IMPLEMENT_CLASS(AUnrealRTOSCharacter, 3276715851);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AUnrealRTOSCharacter(Z_Construct_UClass_AUnrealRTOSCharacter, &AUnrealRTOSCharacter::StaticClass, TEXT("/Script/UnrealRTOS"), TEXT("AUnrealRTOSCharacter"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AUnrealRTOSCharacter);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

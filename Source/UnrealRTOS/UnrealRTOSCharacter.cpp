@@ -8,6 +8,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameFramework/GameUserSettings.h"
+#include "EntityManager.h"
+#include "Json.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AUnrealRTOSCharacter
@@ -51,9 +54,76 @@ AUnrealRTOSCharacter::AUnrealRTOSCharacter():
 void AUnrealRTOSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	UGameUserSettings::GetGameUserSettings()->SetFullscreenMode(EWindowMode::Windowed);
+	const FString WriteSection = "RTOSConfig";
+	//String
+	//GConfig->SetString(
+	//	*WriteSection,
+	//	TEXT("FedExecutionName"),
+	//	TEXT("UnrealRTOS"),
+	//	GGameIni
+	//	);
+	//GConfig->SetString(
+	//	*WriteSection,
+	//	TEXT("FedName"),
+	//	TEXT("MultiAI"),
+	//	GGameIni
+	//	);
+	//GConfig->Flush(false, GGameIni);
+	FString FedExecutionName;
+	GConfig->GetString(
+		TEXT("RTOSConfig"),
+		TEXT("FedExecutionName"),
+		FedExecutionName,
+		GGameIni
+		);
+	FString FedName;
+	GConfig->GetString(
+		TEXT("RTOSConfig"),
+		TEXT("FedName"),
+		FedName,
+		GGameIni
+		);
+	FString FedFile;
+	GConfig->GetString(
+		TEXT("RTOSConfig"),
+		TEXT("FedFile"),
+		FedFile,
+		GGameIni
+		);
+	FString NodeAddress;
+	GConfig->GetString(
+		TEXT("RTOSConfig"),
+		TEXT("NodeAddress"),
+		NodeAddress,
+		GGameIni
+		);
+	UWorld* const World = GetWorld();
+	if (TempleCharactor != nullptr)
+	{
+		UWorld* const World = GetWorld();
+		if (World != nullptr)
+		{
+			SintolRTI::EntityManager::GetInstance()->setWolrd(World);
+		}
+		SintolRTI::EntityManager::GetInstance()->SetTempleEntityCharactor(TempleCharactor);
+		//SintolRTI::EntityManager::GetInstance()->createAActorWithTemple(GetActorLocation()+ FVector(50,0,0), GetActorRotation());
+	}
+
+	std::wstring _wfedExecutionName = FedExecutionName.GetCharArray().GetData();
+	std::wstring _wfedName = FedName.GetCharArray().GetData();
+	std::wstring _wfedFile = FedFile.GetCharArray().GetData();
+	std::wstring _nodeAddress = NodeAddress.GetCharArray().GetData();
+
+	_fedTypeName = TCHAR_TO_UTF8(*FedName);
+
 	_ambassador = new SintolRTI::UnrealRTOSAmbassador();
 	rti1516::AttributeHandleSet _attributionset;
-	SintolRTI::SDKManager::GetInstance()->InitSDK(*_ambassador, L"UnrealRTOS", L"MultiAI", L"D:/SintolRTOS/UnrealRTOS/Binaries/Win64/multiAI.xml", L"127.0.0.1:14321");
+	SintolRTI::SDKManager::GetInstance()->InitSDK(*_ambassador, 
+		_wfedExecutionName,
+		_wfedName,
+		_wfedFile,
+		_nodeAddress);
 	try {
 		_characterObjHandle = SintolRTI::SDKManager::GetInstance()->getObjectClassHandle(L"MultiEntity");
 		_characterAttributeHandle = SintolRTI::SDKManager::GetInstance()->getAttributeHandle(_characterObjHandle, L"playerAttribution");
@@ -88,12 +158,22 @@ void AUnrealRTOSCharacter::Tick(float DeltaSeconds)
 	_invervalTime += DeltaSeconds;
 	FVector _charactorLocation = GetActorLocation();
 	FString _locationstr = _charactorLocation.ToString();
-	std::string _locationattri(TCHAR_TO_UTF8(*_locationstr));
+	FRotator _charactorRotation = GetActorRotation();
+	FString _rotationstr = _charactorRotation.ToString();
+	std::string _rotationattri(TCHAR_TO_UTF8(*_rotationstr));
+	TSharedPtr<FJsonObject> _jsonObj = MakeShareable(new FJsonObject);
+	_jsonObj->SetStringField("location", _locationstr);
+	_jsonObj->SetStringField("rotation", _rotationstr);
+	_jsonObj->SetBoolField("bWasJumping", bWasJumping);
+	FString _jsonAttribution;
+	TSharedRef<TJsonWriter<TCHAR>> t_writer = TJsonWriterFactory<>::Create(&_jsonAttribution);
+	FJsonSerializer::Serialize(_jsonObj.ToSharedRef(), t_writer);
+	std::string _attribution(TCHAR_TO_UTF8(*_jsonAttribution));
 	rti1516::AttributeHandleValueMap _attributeValueMap;
-	rti1516::VariableLengthData tag = toVariableLengthData("MultiAI_01");
-	_attributeValueMap[_characterAttributeHandle] = toVariableLengthData(_locationattri);
+	rti1516::VariableLengthData tag = toVariableLengthData(_fedTypeName);
+	_attributeValueMap[_characterAttributeHandle] = toVariableLengthData(_attribution);
 	SintolRTI::SDKManager::GetInstance()->updateAttributeValues(_charactorObjInstance, _attributeValueMap, tag);
-	SintolRTI::SDKManager::GetInstance()->Update(DeltaSeconds);
+	SintolRTI::SDKManager::GetInstance()->Update(0.001);
 }
 
 void AUnrealRTOSCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -112,6 +192,7 @@ void AUnrealRTOSCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
 		return;
 	}
 	SintolRTI::SDKManager::GetInstance()->StopSDK();
+	SintolRTI::EntityManager::GetInstance()->Clear();
 	if (NULL != _ambassador)
 	{
 		delete _ambassador;

@@ -2,6 +2,7 @@
 #define _UNREAL_RTOS_AMBASSADOR_H
 #pragma warning (disable:4290)
 #include "../../ThirdParty/SDKManager.h"
+#include "EntityManager.h"
 #include <Clock.h>
 #include <StringUtils.h>
 
@@ -153,20 +154,22 @@ namespace SintolRTI {
 		{
 		}
 
-		virtual void discoverObjectInstance(rti1516::ObjectInstanceHandle, rti1516::ObjectClassHandle, const std::wstring&)
+		virtual void discoverObjectInstance(rti1516::ObjectInstanceHandle objhandle, rti1516::ObjectClassHandle classhandle, const std::wstring&)
 			throw (rti1516::CouldNotDiscover,
 				rti1516::ObjectClassNotKnown,
 				rti1516::FederateInternalError)
 		{
+			EntityManager::GetInstance()->createAActorWithTemple(objhandle, FVector(0, 0, 0), FRotator(0, 0, 0));
 		}
 
-		virtual void reflectAttributeValues(rti1516::ObjectInstanceHandle, const rti1516::AttributeHandleValueMap&,
-			const rti1516::VariableLengthData&, rti1516::OrderType, rti1516::TransportationType)
+		virtual void reflectAttributeValues(rti1516::ObjectInstanceHandle objhandle, const rti1516::AttributeHandleValueMap& objattribution,
+			const rti1516::VariableLengthData& tag, rti1516::OrderType, rti1516::TransportationType)
 			throw (rti1516::ObjectInstanceNotKnown,
 				rti1516::AttributeNotRecognized,
 				rti1516::AttributeNotSubscribed,
 				rti1516::FederateInternalError)
 		{
+			EntityManager::GetInstance()->updateEntityActor(objhandle, objattribution, tag);
 		}
 
 		virtual void reflectAttributeValues(rti1516::ObjectInstanceHandle objectInstanceHandle, const rti1516::AttributeHandleValueMap& attributeHandleValueMap,
@@ -310,6 +313,7 @@ namespace SintolRTI {
 			throw (rti1516::ObjectInstanceNotKnown,
 				rti1516::FederateInternalError)
 		{
+			EntityManager::GetInstance()->deleteEntityActor(theObject);
 		}
 
 		virtual void removeObjectInstance(rti1516::ObjectInstanceHandle theObject,
