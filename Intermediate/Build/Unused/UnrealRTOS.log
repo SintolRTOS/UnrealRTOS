@@ -1,17 +1,19 @@
 ﻿  Using 'git status' to determine working set for adaptive non-unity build.
-  Creating makefile for hot reloading UnrealRTOSEditor (modules to compile have changed)
-  Compiling game modules for hot reload
-  Performing 3 actions (4 in parallel)
-cl : 命令行 warning D9002: 忽略未知选项“/source-charset:utf-8”
-cl : 命令行 warning D9002: 忽略未知选项“/execution-charset:utf-8”
-  UnrealRTOSCharacter.cpp
-d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(40): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
-d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(52): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
-d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(96): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
-d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(135): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
-  [2/3] Link UE4Editor-UnrealRTOS-330.dll
-  [3/3] Link UE4Editor-UnrealRTOS-330.lib
-    ���ڴ����� d:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS-330.lib �Ͷ��� d:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS-330.exp
-    ���ڴ����� d:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS-330.suppressed.lib �Ͷ��� d:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS-330.suppressed.exp
-  Deploying UnrealRTOSEditor Win64 Development...
-  Total build time: 491.89 seconds (Local executor: 431.08 seconds)
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-1085.dll".
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-1085.pdb".
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-3438.dll".
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-3438.pdb".
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-3902.dll".
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-3902.pdb".
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-4376.dll".
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-4376.pdb".
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-8281.dll".
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-8281.pdb".
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-8716.dll".
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-8716.pdb".
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-9922.dll".
+  Deleting old hot reload file: "d:\SintolRTOS\UnrealRTOS\Binaries\Win64\UE4Editor-UnrealRTOS-9922.pdb".
+  Performing 1 actions (4 in parallel)
+  [1/1] Link UE4Editor-UnrealRTOS.dll
+    ���ڴ����� d:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS.suppressed.lib �Ͷ��� d:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS.suppressed.exp
+  Total build time: 4.41 seconds (Local executor: 1.13 seconds)

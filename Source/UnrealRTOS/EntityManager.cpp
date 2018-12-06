@@ -1,5 +1,6 @@
 #include "EntityManager.h"
 #include "UnrealRTOSCharacter.h"
+#include "GameFramework/PawnMovementComponent.h"
 #include "CoreMinimal.h"
 
 namespace SintolRTI {
@@ -58,12 +59,16 @@ namespace SintolRTI {
 				{
 					FString _flocation = _jsonObject->GetStringField("location");
 					FString _frotation = _jsonObject->GetStringField("rotation");
-					bool _bWasJumping = _jsonObject->GetBoolField("bWasJumping");
+					FString _fvelocity = _jsonObject->GetStringField("velocity");
+					int _movemode = _jsonObject->GetNumberField("movemode");
 					FVector _location;
 					_location.InitFromString(_flocation);
 					FRotator _rotation;
 					_rotation.InitFromString(_frotation);
+					FVector _veloctiy;
+					_veloctiy.InitFromString(_fvelocity);
 					EntityActorMap[objhandle]->SetActorLocationAndRotation(_location, _rotation);
+					((AEntityCharacter*)EntityActorMap[objhandle])->GetMovementComponent()->Velocity = _veloctiy;
 				}
 				//std::cout << _multiName << ":" << locationinfo << std::endl;
 			}

@@ -160,11 +160,13 @@ void AUnrealRTOSCharacter::Tick(float DeltaSeconds)
 	FString _locationstr = _charactorLocation.ToString();
 	FRotator _charactorRotation = GetActorRotation();
 	FString _rotationstr = _charactorRotation.ToString();
+	FString _velocity = GetVelocity().ToString();
 	std::string _rotationattri(TCHAR_TO_UTF8(*_rotationstr));
 	TSharedPtr<FJsonObject> _jsonObj = MakeShareable(new FJsonObject);
 	_jsonObj->SetStringField("location", _locationstr);
 	_jsonObj->SetStringField("rotation", _rotationstr);
-	_jsonObj->SetBoolField("bWasJumping", bWasJumping);
+	_jsonObj->SetStringField("velocity", _velocity);
+	_jsonObj->SetNumberField("movemode", GetCharacterMovement()->GetGroundMovementMode());
 	FString _jsonAttribution;
 	TSharedRef<TJsonWriter<TCHAR>> t_writer = TJsonWriterFactory<>::Create(&_jsonAttribution);
 	FJsonSerializer::Serialize(_jsonObj.ToSharedRef(), t_writer);
