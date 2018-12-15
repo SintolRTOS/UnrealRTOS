@@ -55,6 +55,7 @@ void AUnrealRTOSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	UGameUserSettings::GetGameUserSettings()->SetFullscreenMode(EWindowMode::Windowed);
+	_charactorBehaviorTree.setCharactor(this);
 	const FString WriteSection = "RTOSConfig";
 	//String
 	//GConfig->SetString(
@@ -176,6 +177,7 @@ void AUnrealRTOSCharacter::Tick(float DeltaSeconds)
 	_attributeValueMap[_characterAttributeHandle] = toVariableLengthData(_attribution);
 	SintolRTI::SDKManager::GetInstance()->updateAttributeValues(_charactorObjInstance, _attributeValueMap, tag);
 	SintolRTI::SDKManager::GetInstance()->Update(0.001);
+	_charactorBehaviorTree.update(DeltaSeconds);
 }
 
 void AUnrealRTOSCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -195,6 +197,7 @@ void AUnrealRTOSCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	}
 	SintolRTI::SDKManager::GetInstance()->StopSDK();
 	SintolRTI::EntityManager::GetInstance()->Clear();
+	_charactorBehaviorTree.clear();
 	if (NULL != _ambassador)
 	{
 		delete _ambassador;

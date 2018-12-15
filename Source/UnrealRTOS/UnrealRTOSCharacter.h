@@ -7,6 +7,7 @@
 #include "UnrealRTOSAmbassador.h"
 #include "EntityManager.h"
 #include "EntityCharacter.h"
+#include "BehaviorTree/CBehaviorTree.h"
 #include "UnrealRTOSCharacter.generated.h"
 
 UCLASS(config=Game)
@@ -48,7 +49,7 @@ protected:
 	rti1516::ObjectClassHandle _characterObjHandle;
 	rti1516::AttributeHandle _characterAttributeHandle;
 	rti1516::ObjectInstanceHandle _charactorObjInstance;
-
+	SintolRTI::CBehaviorTree _charactorBehaviorTree;
 	SintolRTI::UnrealRTOSAmbassador* _ambassador;
 
 	/** Resets HMD orientation in VR. */
