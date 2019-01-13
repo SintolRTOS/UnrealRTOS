@@ -4,7 +4,8 @@ CBehaviorTreeNode::CBehaviorTreeNode(ACharacter* _charactor, BehaviorTreeType _s
 	_aiController(_charactor),
 	_nodestate(_state),
 	_isstarted(false),
-	_invervaltime(0)
+	_invervaltime(0),
+	_runstate(READY)
 {
 
 }
@@ -61,11 +62,16 @@ void CBehaviorTreeNode::update(float deteltime)
 
 void CBehaviorTreeNode::doLogic()
 {
-
+	
 }
 
 void CBehaviorTreeNode::clear()
 {
 	_isstarted = false;
 	_invervaltime = 0;
+}
+
+void CBehaviorTreeNode::setTargetCharactor(ACharacter* _value)
+{
+	_target = _value;
 }

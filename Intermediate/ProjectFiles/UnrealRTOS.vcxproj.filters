@@ -1,73 +1,111 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<ItemGroup>
-		<None Include="..\..\UnrealRTOS.uproject" />
-		<Filter Include="Source">
-			<UniqueIdentifier>{4FBAF910-638A-4946-94ED-1FF999A1888F}</UniqueIdentifier>
-		</Filter>
-		<None Include="..\..\Source\UnrealRTOS.Target.cs">
-			<Filter>Source</Filter>
-		</None >
-		<None Include="..\..\Source\UnrealRTOSEditor.Target.cs">
-			<Filter>Source</Filter>
-		</None >
-		<Filter Include="Config">
-			<UniqueIdentifier>{24B2A9A2-3AD9-45A7-A944-B63FC5506476}</UniqueIdentifier>
-		</Filter>
-		<None Include="..\..\Config\DefaultEditor.ini">
-			<Filter>Config</Filter>
-		</None >
-		<None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
-			<Filter>Config</Filter>
-		</None >
-		<None Include="..\..\Config\DefaultEngine.ini">
-			<Filter>Config</Filter>
-		</None >
-		<None Include="..\..\Config\DefaultGame.ini">
-			<Filter>Config</Filter>
-		</None >
-		<None Include="..\..\Config\DefaultInput.ini">
-			<Filter>Config</Filter>
-		</None >
-		<Filter Include="Source\UnrealRTOS">
-			<UniqueIdentifier>{88AD1970-ECFF-412B-897F-E7A12EF4D371}</UniqueIdentifier>
-		</Filter>
-		<ClCompile Include="..\..\Source\UnrealRTOS\EntityCharacter.cpp">
-			<Filter>Source\UnrealRTOS</Filter>
-		</ClCompile >
-		<ClInclude Include="..\..\Source\UnrealRTOS\EntityCharacter.h">
-			<Filter>Source\UnrealRTOS</Filter>
-		</ClInclude >
-		<ClCompile Include="..\..\Source\UnrealRTOS\EntityManager.cpp">
-			<Filter>Source\UnrealRTOS</Filter>
-		</ClCompile >
-		<ClInclude Include="..\..\Source\UnrealRTOS\EntityManager.h">
-			<Filter>Source\UnrealRTOS</Filter>
-		</ClInclude >
-		<None Include="..\..\Source\UnrealRTOS\UnrealRTOS.Build.cs">
-			<Filter>Source\UnrealRTOS</Filter>
-		</None >
-		<ClCompile Include="..\..\Source\UnrealRTOS\UnrealRTOS.cpp">
-			<Filter>Source\UnrealRTOS</Filter>
-		</ClCompile >
-		<ClInclude Include="..\..\Source\UnrealRTOS\UnrealRTOS.h">
-			<Filter>Source\UnrealRTOS</Filter>
-		</ClInclude >
-		<ClInclude Include="..\..\Source\UnrealRTOS\UnrealRTOSAmbassador.h">
-			<Filter>Source\UnrealRTOS</Filter>
-		</ClInclude >
-		<ClCompile Include="..\..\Source\UnrealRTOS\UnrealRTOSCharacter.cpp">
-			<Filter>Source\UnrealRTOS</Filter>
-		</ClCompile >
-		<ClInclude Include="..\..\Source\UnrealRTOS\UnrealRTOSCharacter.h">
-			<Filter>Source\UnrealRTOS</Filter>
-		</ClInclude >
-		<ClCompile Include="..\..\Source\UnrealRTOS\UnrealRTOSGameMode.cpp">
-			<Filter>Source\UnrealRTOS</Filter>
-		</ClCompile >
-		<ClInclude Include="..\..\Source\UnrealRTOS\UnrealRTOSGameMode.h">
-			<Filter>Source\UnrealRTOS</Filter>
-		</ClInclude >
-	</ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\UnrealRTOS.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FBAF910-638A-4946-94ED-1FF999A1888F}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\UnrealRTOS.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\UnrealRTOSEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{24B2A9A2-3AD9-45A7-A944-B63FC5506476}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\UnrealRTOS">
+      <UniqueIdentifier>{88AD1970-ECFF-412B-897F-E7A12EF4D371}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\UnrealRTOS\EntityCharacter.cpp">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UnrealRTOS\EntityManager.cpp">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealRTOS\EntityManager.h">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClInclude>
+    <None Include="..\..\Source\UnrealRTOS\UnrealRTOS.Build.cs">
+      <Filter>Source\UnrealRTOS</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\UnrealRTOS\UnrealRTOS.cpp">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealRTOS\UnrealRTOS.h">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UnrealRTOS\UnrealRTOSAmbassador.h">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\UnrealRTOS\UnrealRTOSCharacter.cpp">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealRTOS\UnrealRTOSCharacter.h">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\UnrealRTOS\UnrealRTOSGameMode.cpp">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\UnrealRTOS\UnrealRTOSGameMode.h">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source\UnrealRTOS\BehaviorTree">
+      <UniqueIdentifier>{41ba43ab-4521-46b1-a873-ad24a23764d3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\UnrealRTOS\EntityCharacter.h">
+      <Filter>Source\UnrealRTOS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UnrealRTOS\BehaviorTree\CBehaviorTree.h">
+      <Filter>Source\UnrealRTOS\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UnrealRTOS\BehaviorTree\CBehaviorTreeNode.h">
+      <Filter>Source\UnrealRTOS\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UnrealRTOS\BehaviorTree\CBehaviorTreeIdle.h">
+      <Filter>Source\UnrealRTOS\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UnrealRTOS\BehaviorTree\CBehaviorTreePatrol.h">
+      <Filter>Source\UnrealRTOS\BehaviorTree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UnrealRTOS\BehaviorTree\CBehaviorTreeFollow.h">
+      <Filter>Source\UnrealRTOS\BehaviorTree</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\UnrealRTOS\BehaviorTree\CBehaviorTree.cpp">
+      <Filter>Source\UnrealRTOS\BehaviorTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UnrealRTOS\BehaviorTree\CBehaviorTreeNode.cpp">
+      <Filter>Source\UnrealRTOS\BehaviorTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UnrealRTOS\BehaviorTree\CBehaviorTreeIdle.cpp">
+      <Filter>Source\UnrealRTOS\BehaviorTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UnrealRTOS\BehaviorTree\CBehaviorTreePatrol.cpp">
+      <Filter>Source\UnrealRTOS\BehaviorTree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UnrealRTOS\BehaviorTree\CBehaviorTreeFollow.cpp">
+      <Filter>Source\UnrealRTOS\BehaviorTree</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

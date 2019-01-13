@@ -10,6 +10,15 @@ enum BehaviorTreeType
 	FOLLOW,
 };
 
+enum BehaviorNodeState
+{
+	READY,
+	DOING,
+	PAUSE,
+	STOP,
+	WAIT
+};
+
 class CBehaviorTreeNode
 {
 public:
@@ -26,10 +35,13 @@ public:
 	virtual void update(float deteltime);
 	virtual void doLogic();
 	virtual void clear();
-private:
+	virtual void setTargetCharactor(ACharacter* _value);
+protected:
 	bool _isstarted;
 	ACharacter* _aiController;
+	ACharacter* _target;
 	BehaviorTreeType _nodestate;
+	BehaviorNodeState _runstate;
 	float _invervaltime;
 };
 

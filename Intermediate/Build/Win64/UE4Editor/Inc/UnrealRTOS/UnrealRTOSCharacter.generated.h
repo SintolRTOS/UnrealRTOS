@@ -13,9 +13,9 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define UNREALRTOS_UnrealRTOSCharacter_generated_h
 
-#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_RPC_WRAPPERS
-#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_RPC_WRAPPERS_NO_PURE_DECLS
-#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_INCLASS_NO_PURE_DECLS \
+#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_RPC_WRAPPERS
+#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_RPC_WRAPPERS_NO_PURE_DECLS
+#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAUnrealRTOSCharacter(); \
 	friend UNREALRTOS_API class UClass* Z_Construct_UClass_AUnrealRTOSCharacter(); \
@@ -25,7 +25,7 @@ public: \
 	enum {IsIntrinsic=COMPILED_IN_INTRINSIC};
 
 
-#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_INCLASS \
+#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_INCLASS \
 private: \
 	static void StaticRegisterNativesAUnrealRTOSCharacter(); \
 	friend UNREALRTOS_API class UClass* Z_Construct_UClass_AUnrealRTOSCharacter(); \
@@ -35,7 +35,7 @@ public: \
 	enum {IsIntrinsic=COMPILED_IN_INTRINSIC};
 
 
-#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_STANDARD_CONSTRUCTORS \
+#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AUnrealRTOSCharacter(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AUnrealRTOSCharacter) \
@@ -48,7 +48,7 @@ private: \
 public:
 
 
-#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_ENHANCED_CONSTRUCTORS \
+#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API AUnrealRTOSCharacter(AUnrealRTOSCharacter&&); \
@@ -59,30 +59,30 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AUnrealRTOSCharacter); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AUnrealRTOSCharacter)
 
 
-#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_PRIVATE_PROPERTY_OFFSET \
+#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__CameraBoom() { return STRUCT_OFFSET(AUnrealRTOSCharacter, CameraBoom); } \
 	FORCEINLINE static uint32 __PPO__FollowCamera() { return STRUCT_OFFSET(AUnrealRTOSCharacter, FollowCamera); }
 
 
-#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_12_PROLOG
-#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_GENERATED_BODY_LEGACY \
+#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_13_PROLOG
+#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_PRIVATE_PROPERTY_OFFSET \
-	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_RPC_WRAPPERS \
-	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_INCLASS \
-	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_STANDARD_CONSTRUCTORS \
+	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_PRIVATE_PROPERTY_OFFSET \
+	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_RPC_WRAPPERS \
+	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_INCLASS \
+	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_GENERATED_BODY \
+#define UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_PRIVATE_PROPERTY_OFFSET \
-	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_INCLASS_NO_PURE_DECLS \
-	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_15_ENHANCED_CONSTRUCTORS \
+	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_PRIVATE_PROPERTY_OFFSET \
+	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_INCLASS_NO_PURE_DECLS \
+	UnrealRTOS_Source_UnrealRTOS_UnrealRTOSCharacter_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

@@ -15,9 +15,13 @@ namespace SintolRTI {
 
 	void CBehaviorTree::update(float detaltime)
 	{
-		for (std::map<int, CBehaviorTreeNode*>::iterator it = BehaviorTreeMap.begin();it != BehaviorTreeMap.end(); it++)
+		//for (std::map<int, CBehaviorTreeNode*>::iterator it = BehaviorTreeMap.begin();it != BehaviorTreeMap.end(); it++)
+		//{
+		//	it->second->update(detaltime);
+		//}
+		if (_curnode != NULL)
 		{
-			it->second->update(detaltime);
+			_curnode->update(detaltime);
 		}
 	}
 
@@ -28,14 +32,14 @@ namespace SintolRTI {
 
 	void CBehaviorTree::initBehaviorTrees()
 	{
-		CBehaviorTreeNode* _stateNode = new CBehaviorTreeNode(_aicontroller, IDLE);
-		BehaviorTreeMap.insert(std::make_pair(IDLE, _stateNode));
-		_stateNode = new CBehaviorTreeNode(_aicontroller, MOVE);
-		BehaviorTreeMap.insert(std::make_pair(MOVE, _stateNode));
-		_stateNode = new CBehaviorTreeNode(_aicontroller, CHECKTASK);
-		BehaviorTreeMap.insert(std::make_pair(CHECKTASK, _stateNode));
-		_stateNode = new CBehaviorTreeNode(_aicontroller, FOLLOW);
-		BehaviorTreeMap.insert(std::make_pair(FOLLOW, _stateNode));
+		//CBehaviorTreeNode* _stateNode = new CBehaviorTreeNode(_aicontroller, IDLE);
+		//BehaviorTreeMap.insert(std::make_pair(IDLE, _stateNode));
+		//_stateNode = new CBehaviorTreeNode(_aicontroller, MOVE);
+		//BehaviorTreeMap.insert(std::make_pair(MOVE, _stateNode));
+		//_stateNode = new CBehaviorTreeNode(_aicontroller, CHECKTASK);
+		//BehaviorTreeMap.insert(std::make_pair(CHECKTASK, _stateNode));
+		//_stateNode = new CBehaviorTreeNode(_aicontroller, FOLLOW);
+		//BehaviorTreeMap.insert(std::make_pair(FOLLOW, _stateNode));
 	}
 
 	void CBehaviorTree::startBehaviorNode(BehaviorTreeType _type)
@@ -58,4 +62,45 @@ namespace SintolRTI {
 		BehaviorTreeMap.clear();
 		_curnode = NULL;
 	}
+
+	void CBehaviorTree::addBehaviorTreeNode(BehaviorTreeType _type)
+	{
+		if (_type == CHECKTASK)
+		{
+			if (BehaviorTreeMap.find(_type) == BehaviorTreeMap.end())
+			{
+				CBehaviorTreeNode* _stateNode = CBehaviorTreePatrol::createInstance(_aicontroller, CHECKTASK);
+				BehaviorTreeMap.insert(std::make_pair(CHECKTASK, _stateNode));
+			}
+		}
+		else if (_type == IDLE)
+		{
+			if (BehaviorTreeMap.find(_type) == BehaviorTreeMap.end())
+			{
+				CBehaviorTreeNode* _stateNode = CBehaviorTreeIdle::createInstance(_aicontroller, IDLE);
+				BehaviorTreeMap.insert(std::make_pair(IDLE, _stateNode));
+			}
+		}
+		else if (_type == FOLLOW)
+		{
+			if (BehaviorTreeMap.find(_type) == BehaviorTreeMap.end())
+			{
+				CBehaviorTreeNode* _stateNode = CBehaviorTreeFollow::createInstance(_aicontroller, FOLLOW, NULL);
+				BehaviorTreeMap.insert(std::make_pair(FOLLOW, _stateNode));
+			}
+		}
+	}
+
+	void CBehaviorTree::addBehaviorTreeNode(BehaviorTreeType _type, ACharacter* _target)
+	{
+		if (_type == FOLLOW)
+		{
+			if (BehaviorTreeMap.find(_type) == BehaviorTreeMap.end())
+			{
+				CBehaviorTreeNode* _stateNode = CBehaviorTreeFollow::createInstance(_aicontroller, FOLLOW, _target);
+				BehaviorTreeMap.insert(std::make_pair(FOLLOW, _stateNode));
+			}
+		}
+	}
+
 }
