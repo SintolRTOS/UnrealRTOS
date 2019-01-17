@@ -1,6 +1,7 @@
 #ifndef _BEHAVIORTREE_NODE_H
 #define _BEHAVIORTREE_NODE_H
 #include "GameFramework/Character.h"
+
 enum BehaviorTreeType
 {
 	NONE,
@@ -19,6 +20,8 @@ enum BehaviorNodeState
 	WAIT
 };
 
+class CBehaviorTree;
+
 class CBehaviorTreeNode
 {
 public:
@@ -29,7 +32,7 @@ public:
 	virtual void wait(float _waitime);
 	virtual void leaveState();
 	virtual void pauseState();
-	virtual void translateTo(BehaviorTreeType _nextstate, float translatetime = 0.0f);
+	virtual void translateTo(CBehaviorTree* _tree,BehaviorTreeType _nextstate, float translatetime = 0.0f);
 	virtual void onEnterState();
 	virtual void onLeaveState();
 	virtual void update(float deteltime);
@@ -42,7 +45,9 @@ protected:
 	ACharacter* _target;
 	BehaviorTreeType _nodestate;
 	BehaviorNodeState _runstate;
+	float _timedetal;
 	float _invervaltime;
+	float _waittime;
 };
 
 #endif // !_BEHAVIORTREE_NODE_H

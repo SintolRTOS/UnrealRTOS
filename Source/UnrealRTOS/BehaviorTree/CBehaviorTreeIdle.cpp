@@ -1,4 +1,6 @@
 #include "CBehaviorTreeIdle.h"
+#include "CBehaviorTree.h"
+#include "../EntityManager.h"
 
 CBehaviorTreeIdle::~CBehaviorTreeIdle()
 {
@@ -25,9 +27,9 @@ void CBehaviorTreeIdle::pauseState()
 	CBehaviorTreeNode::pauseState();
 }
 
-void CBehaviorTreeIdle::translateTo(BehaviorTreeType _nextstate, float translatetime /*= 0.0f*/)
+void CBehaviorTreeIdle::translateTo(CBehaviorTree* _tree, BehaviorTreeType _nextstate, float translatetime /*= 0.0f*/)
 {
-	CBehaviorTreeNode::translateTo(_nextstate, translatetime);
+	CBehaviorTreeNode::translateTo(_tree,_nextstate, translatetime);
 }
 
 void CBehaviorTreeIdle::onEnterState()
@@ -48,6 +50,12 @@ void CBehaviorTreeIdle::update(float deteltime)
 void CBehaviorTreeIdle::doLogic()
 {
 	CBehaviorTreeNode::doLogic();
+	std::map<rti1516::ObjectInstanceHandle, AActor*> entityActorMap = SintolRTI::EntityManager::GetInstance()->GetEnitiyActorMap();
+	for (std::map<rti1516::ObjectInstanceHandle, AActor*>::const_iterator it = entityActorMap.begin();
+		it != entityActorMap.end(); it++)
+	{
+		AActor* entity = it->second;
+	}
 }
 
 void CBehaviorTreeIdle::clear()

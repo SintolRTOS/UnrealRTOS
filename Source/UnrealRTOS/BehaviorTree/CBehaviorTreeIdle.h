@@ -11,7 +11,7 @@ public:
 	virtual void wait(float _waitime);
 	virtual void leaveState();
 	virtual void pauseState();
-	virtual void translateTo(BehaviorTreeType _nextstate, float translatetime = 0.0f);
+	virtual void translateTo(CBehaviorTree* _tree, BehaviorTreeType _nextstate, float translatetime = 0.0f);
 	virtual void onEnterState();
 	virtual void onLeaveState();
 	virtual void update(float deteltime);

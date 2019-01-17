@@ -49,7 +49,7 @@ protected:
 	rti1516::ObjectClassHandle _characterObjHandle;
 	rti1516::AttributeHandle _characterAttributeHandle;
 	rti1516::ObjectInstanceHandle _charactorObjInstance;
-	SintolRTI::CBehaviorTree _charactorBehaviorTree;
+	CBehaviorTree _charactorBehaviorTree;
 	SintolRTI::UnrealRTOSAmbassador* _ambassador;
 
 	/** Resets HMD orientation in VR. */

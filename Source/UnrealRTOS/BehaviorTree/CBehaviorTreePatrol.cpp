@@ -1,4 +1,5 @@
 #include "CBehaviorTreePatrol.h"
+#include "CBehaviorTree.h"
 
 CBehaviorTreePatrol::~CBehaviorTreePatrol()
 {
@@ -25,9 +26,9 @@ void CBehaviorTreePatrol::pauseState()
 	CBehaviorTreeNode::pauseState();
 }
 
-void CBehaviorTreePatrol::translateTo(BehaviorTreeType _nextstate, float translatetime /*= 0.0f*/)
+void CBehaviorTreePatrol::translateTo(CBehaviorTree* _tree, BehaviorTreeType _nextstate, float translatetime /*= 0.0f*/)
 {
-	CBehaviorTreeNode::translateTo(_nextstate, translatetime);
+	CBehaviorTreeNode::translateTo(_tree,_nextstate, translatetime);
 }
 
 void CBehaviorTreePatrol::onEnterState()
