@@ -1,11 +1,4 @@
 ﻿  Using 'git status' to determine working set for adaptive non-unity build.
-  Performing 3 actions (4 in parallel)
-cl : 命令行 warning D9002: 忽略未知选项“/source-charset:utf-8”
-cl : 命令行 warning D9002: 忽略未知选项“/execution-charset:utf-8”
-  CBehaviorTreeFollow.cpp
-  [2/3] Link UE4Editor-UnrealRTOS.dll
-  [3/3] Link UE4Editor-UnrealRTOS.lib
-    ���ڴ����� D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS.lib �Ͷ��� D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS.exp
-    ���ڴ����� D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS.suppressed.lib �Ͷ��� D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS.suppressed.exp
+  Target is up to date
   Deploying UnrealRTOSEditor Win64 Development...
-  Total build time: 4.43 seconds (Local executor: 2.54 seconds)
+  Total build time: 0.65 seconds (NoActionsToExecute executor: 0.00 seconds)

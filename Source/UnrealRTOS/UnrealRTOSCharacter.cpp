@@ -56,6 +56,8 @@ void AUnrealRTOSCharacter::BeginPlay()
 	Super::BeginPlay();
 	UGameUserSettings::GetGameUserSettings()->SetFullscreenMode(EWindowMode::Windowed);
 	_charactorBehaviorTree.setCharactor(this);
+	_charactorBehaviorTree.initBehaviorTrees();
+	_charactorBehaviorTree.startBehaviorNode(IDLE);
 	const FString WriteSection = "RTOSConfig";
 	//String
 	//GConfig->SetString(

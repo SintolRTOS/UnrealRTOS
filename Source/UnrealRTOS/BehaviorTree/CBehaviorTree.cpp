@@ -40,6 +40,7 @@ void CBehaviorTree::initBehaviorTrees()
 	//BehaviorTreeMap.insert(std::make_pair(CHECKTASK, _stateNode));
 	//_stateNode = new CBehaviorTreeNode(_aicontroller, FOLLOW);
 	//BehaviorTreeMap.insert(std::make_pair(FOLLOW, _stateNode));
+	addBehaviorTreeNode(IDLE);
 }
 
 void CBehaviorTree::startBehaviorNode(BehaviorTreeType _type)
@@ -48,6 +49,7 @@ void CBehaviorTree::startBehaviorNode(BehaviorTreeType _type)
 	{
 		_curnode = BehaviorTreeMap[_type];
 		_curnode->enterState(NONE);
+		_curnode->onEnterState();
 	}
 }
 

@@ -1,5 +1,7 @@
+#include "CoreMinimal.h"
 #include "CBehaviorTreeIdle.h"
 #include "CBehaviorTree.h"
+#include "Public/DrawDebugHelpers.h"
 #include "../EntityManager.h"
 
 CBehaviorTreeIdle::~CBehaviorTreeIdle()
@@ -50,11 +52,21 @@ void CBehaviorTreeIdle::update(float deteltime)
 void CBehaviorTreeIdle::doLogic()
 {
 	CBehaviorTreeNode::doLogic();
-	std::map<rti1516::ObjectInstanceHandle, AActor*> entityActorMap = SintolRTI::EntityManager::GetInstance()->GetEnitiyActorMap();
-	for (std::map<rti1516::ObjectInstanceHandle, AActor*>::const_iterator it = entityActorMap.begin();
-		it != entityActorMap.end(); it++)
+	FVector startLocation = _aiController->GetActorLocation();
+	FRotator playerRotation = _aiController->GetActorRotation();
+	const float rayLength = 300.0f;
+	FVector endLocation = playerRotation.Vector()*rayLength;
+	FVector lineTrace = startLocation + endLocation;
+	const UWorld* wp = _aiController->GetWorld();
+	DrawDebugLine(wp, startLocation, lineTrace, FColor(255, 0, 0),
+		false, 0.0f, 0.0f, 1.0f);
+	FHitResult hitResult;
+	FCollisionQueryParams QueryParams = FCollisionQueryParams("", false, _aiController);
+	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), QueryParams);
+	AActor* hitObject = hitResult.GetActor();
+	if (hitObject != NULL)
 	{
-		AActor* entity = it->second;
+		UE_LOG(LogTemp, Warning, TEXT("HitActor Name: %s"), *(hitObject->GetName()));
 	}
 }
 

@@ -53,6 +53,7 @@ void CBehaviorTreeNode::onEnterState()
 {
 	_isstarted = true;
 	_timedetal = 0;
+	_runstate = DOING;
 }
 
 void CBehaviorTreeNode::onLeaveState()
