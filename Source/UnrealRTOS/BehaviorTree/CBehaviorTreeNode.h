@@ -17,7 +17,8 @@ enum BehaviorNodeState
 	DOING,
 	PAUSE,
 	STOP,
-	WAIT
+	WAIT,
+	TRANSLATE,
 };
 
 class CBehaviorTree;
@@ -39,11 +40,14 @@ public:
 	virtual void doLogic();
 	virtual void clear();
 	virtual void setTargetCharactor(ACharacter* _value);
+	BehaviorNodeState getRunState();
+	ACharacter* getTargetCharactor();
 protected:
 	bool _isstarted;
 	ACharacter* _aiController;
 	ACharacter* _target;
 	BehaviorTreeType _nodestate;
+	BehaviorTreeType _nextstate;
 	BehaviorNodeState _runstate;
 	float _timedetal;
 	float _invervaltime;

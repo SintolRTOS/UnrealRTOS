@@ -4,6 +4,7 @@
 CBehaviorTreeNode::CBehaviorTreeNode(ACharacter* _charactor, BehaviorTreeType _state):
 	_aiController(_charactor),
 	_nodestate(_state),
+	_nextstate(NONE),
 	_isstarted(false),
 	_invervaltime(0),
 	_waittime(0),
@@ -112,4 +113,14 @@ void CBehaviorTreeNode::clear()
 void CBehaviorTreeNode::setTargetCharactor(ACharacter* _value)
 {
 	_target = _value;
+}
+
+BehaviorNodeState CBehaviorTreeNode::getRunState()
+{
+	return _runstate;
+}
+
+ACharacter* CBehaviorTreeNode::getTargetCharactor()
+{
+	return _target;
 }

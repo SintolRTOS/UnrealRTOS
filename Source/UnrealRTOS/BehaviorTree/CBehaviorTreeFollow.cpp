@@ -49,6 +49,24 @@ void CBehaviorTreeFollow::update(float deteltime)
 void CBehaviorTreeFollow::doLogic()
 {
 	CBehaviorTreeNode::doLogic();
+
+	if (_target != NULL)
+	{
+		FVector _tartLocation = _target->GetActorLocation();
+		FVector _localLocation = _aiController->GetActorLocation();
+		FVector _followFoword = _tartLocation - _localLocation;
+		FVector _localFoword = _aiController->GetActorForwardVector();
+		_localFoword.Y = 0;
+		_followFoword.Y = 0;
+		_localFoword.Normalize();
+		_followFoword.Normalize();
+		float _cosValue = FVector::DotProduct(_localFoword, _followFoword);
+		float rotateAngle = FMath::Acos(_cosValue);
+		FRotator _localrotation = _aiController->GetActorRotation();
+		_localrotation.Pitch += rotateAngle;
+		_aiController->FaceRotation(_localrotation, _timedetal);
+		_aiController->move
+	}
 }
 
 void CBehaviorTreeFollow::clear()

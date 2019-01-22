@@ -22,6 +22,10 @@ void CBehaviorTree::update(float detaltime)
 	if (_curnode != NULL)
 	{
 		_curnode->update(detaltime);
+		if (_curnode->getRunState() == TRANSLATE)
+		{
+			translateTo(FOLLOW, 0,_curnode->getTargetCharactor());
+		}
 	}
 }
 
@@ -70,9 +74,9 @@ void CBehaviorTree::translateTo(BehaviorTreeType _nextstate, float translatetime
 	if (BehaviorTreeMap.find(_nextstate) != BehaviorTreeMap.end())
 	{
 		_curnode = BehaviorTreeMap[_nextstate];
-		_curnode->onEnterState();
 		_curnode->wait(translatetime);
 		_curnode->setTargetCharactor(_targetCharactor);
+		_curnode->onEnterState();
 	}
 }
 

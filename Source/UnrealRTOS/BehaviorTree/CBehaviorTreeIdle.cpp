@@ -66,7 +66,17 @@ void CBehaviorTreeIdle::doLogic()
 	AActor* hitObject = hitResult.GetActor();
 	if (hitObject != NULL)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("HitActor Name: %s"), *(hitObject->GetName()));
+		for (std::map<rti1516::ObjectInstanceHandle, AActor*>::const_iterator it = SintolRTI::EntityManager::GetInstance()->GetEnitiyActorMap().begin();
+			it != SintolRTI::EntityManager::GetInstance()->GetEnitiyActorMap().end(); it++)
+		{
+			if (hitObject == it->second)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("HitActor Name: %s"), *(hitObject->GetName()));
+				_nextstate = FOLLOW;
+				_runstate = TRANSLATE;
+				break;
+			}
+		}
 	}
 }
 
