@@ -1,5 +1,9 @@
 #include "CBehaviorTreeFollow.h"
 #include "CBehaviorTree.h"
+#include "Public/DrawDebugHelpers.h"
+
+
+const static float MaxFollowDistance = 600.0f;
 
 CBehaviorTreeFollow::~CBehaviorTreeFollow()
 {
@@ -65,7 +69,22 @@ void CBehaviorTreeFollow::doLogic()
 		FRotator _localrotation = _aiController->GetActorRotation();
 		_localrotation.Pitch += rotateAngle;
 		_aiController->FaceRotation(_localrotation, _timedetal);
-		_aiController->move
+		_aiController->AddMovementInput(_aiController->GetActorForwardVector());
+
+		bool checkFollow = checkMaxFollowDistance();
+		if (checkFollow)
+		{
+			FVector lineTrace = _localLocation + _tartLocation;
+			const UWorld* wp = _aiController->GetWorld();
+			DrawDebugLine(wp, _localLocation, lineTrace, FColor(0, 255, 0),
+				false, 0.0f, 0.0f, 1.0f);
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Lost Follow Target!"));
+			_runstate = TRANSLATE;
+			_nextstate = CHECKTASK;
+		}
 	}
 }
 
@@ -88,4 +107,14 @@ CBehaviorTreeFollow::CBehaviorTreeFollow(ACharacter* _charactor, BehaviorTreeTyp
 	CBehaviorTreeNode(_charactor,_state)
 {
 	CBehaviorTreeNode::setTargetCharactor(_targetvalue);
+}
+
+bool CBehaviorTreeFollow::checkMaxFollowDistance()
+{
+	if (NULL == _aiController || _target == NULL)
+		return false;
+	float _curFollowDis = (_aiController->GetActorLocation() - _target->GetActorLocation()).Size();
+	if (_curFollowDis > MaxFollowDistance)
+		return false;
+	return true;
 }

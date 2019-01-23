@@ -1,6 +1,16 @@
 #ifndef _BEHAVORTREE_PATROL_H
 #define _BEHAVORTREE_PATROL_H
 #include "CBehaviorTreeNode.h"
+
+enum MoveDirection
+{
+	NONE,
+	FOWARD,
+	BACK,
+	LEFT,
+	RIGHT
+};
+
 class CBehaviorTreePatrol : public CBehaviorTreeNode
 {
 public:
@@ -20,5 +30,8 @@ public:
 	static CBehaviorTreePatrol* createInstance(ACharacter* _charactor, BehaviorTreeType _state);
 private:
 	CBehaviorTreePatrol(ACharacter* _charactor, BehaviorTreeType _state);
+	void checkRoad();
+	float _checkinvervaltime;
+	MoveDirection _checkmovedir;
 };
 #endif // !_BEHAVORTREE_PATROL_H

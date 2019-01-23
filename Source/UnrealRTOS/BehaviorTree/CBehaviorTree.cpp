@@ -26,6 +26,10 @@ void CBehaviorTree::update(float detaltime)
 		{
 			translateTo(FOLLOW, 0,_curnode->getTargetCharactor());
 		}
+		else if (_curnode->getRunState() == CHECKTASK)
+		{
+			translateTo(CHECKTASK, 1);
+		}
 	}
 }
 
@@ -45,6 +49,8 @@ void CBehaviorTree::initBehaviorTrees()
 	//_stateNode = new CBehaviorTreeNode(_aicontroller, FOLLOW);
 	//BehaviorTreeMap.insert(std::make_pair(FOLLOW, _stateNode));
 	addBehaviorTreeNode(IDLE);
+	addBehaviorTreeNode(FOLLOW);
+	addBehaviorTreeNode(CHECKTASK);
 }
 
 void CBehaviorTree::startBehaviorNode(BehaviorTreeType _type)

@@ -20,5 +20,6 @@ public:
 	static CBehaviorTreeFollow* createInstance(ACharacter* _charactor, BehaviorTreeType _state,ACharacter* _targetcharactor);
 private:
 	CBehaviorTreeFollow(ACharacter* _charactor, BehaviorTreeType _state, ACharacter* _targetvalue);
+	bool checkMaxFollowDistance();
 };
 #endif
