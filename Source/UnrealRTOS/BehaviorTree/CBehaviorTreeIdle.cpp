@@ -4,6 +4,8 @@
 #include "Public/DrawDebugHelpers.h"
 #include "../EntityManager.h"
 
+const float _thinkwaittime = 5.0f;
+
 CBehaviorTreeIdle::~CBehaviorTreeIdle()
 {
 	CBehaviorTreeNode::~CBehaviorTreeNode();
@@ -47,11 +49,39 @@ void CBehaviorTreeIdle::onLeaveState()
 void CBehaviorTreeIdle::update(float deteltime)
 {
 	CBehaviorTreeNode::update(deteltime);
+	_thinktimedetal += deteltime;
 }
 
 void CBehaviorTreeIdle::doLogic()
 {
 	CBehaviorTreeNode::doLogic();
+	checkCharactor();
+}
+
+void CBehaviorTreeIdle::clear()
+{
+	CBehaviorTreeNode::clear();
+}
+
+void CBehaviorTreeIdle::setTargetCharactor(ACharacter* _value)
+{
+	CBehaviorTreeNode::setTargetCharactor(_value);
+}
+
+CBehaviorTreeIdle* CBehaviorTreeIdle::createInstance(ACharacter* _charactor, BehaviorTreeType _state)
+{
+	return new CBehaviorTreeIdle(_charactor, _state);
+}
+
+CBehaviorTreeIdle::CBehaviorTreeIdle(ACharacter* _charactor, BehaviorTreeType _state):
+	CBehaviorTreeNode(_charactor,_state),
+	_thinktimedetal(0)
+{
+
+}
+
+void CBehaviorTreeIdle::checkCharactor()
+{
 	FVector startLocation = _aiController->GetActorLocation();
 	FRotator playerRotation = _aiController->GetActorRotation();
 	const float rayLength = 300.0f;
@@ -80,23 +110,15 @@ void CBehaviorTreeIdle::doLogic()
 	}
 }
 
-void CBehaviorTreeIdle::clear()
+void CBehaviorTreeIdle::thinkTranslate()
 {
-	CBehaviorTreeNode::clear();
-}
-
-void CBehaviorTreeIdle::setTargetCharactor(ACharacter* _value)
-{
-	CBehaviorTreeNode::setTargetCharactor(_value);
-}
-
-CBehaviorTreeIdle* CBehaviorTreeIdle::createInstance(ACharacter* _charactor, BehaviorTreeType _state)
-{
-	return new CBehaviorTreeIdle(_charactor, _state);
-}
-
-CBehaviorTreeIdle::CBehaviorTreeIdle(ACharacter* _charactor, BehaviorTreeType _state):
-	CBehaviorTreeNode(_charactor,_state)
-{
-
+	if (_thinktimedetal < _thinkwaittime)
+		return;
+	_runstate = TRANSLATE;
+	int randvalue = FMath::FRand() * 100;
+	if (randvalue <= 10)
+	{
+		_nextstate = CHECKTASK;
+	}
+	_thinktimedetal = 0;
 }

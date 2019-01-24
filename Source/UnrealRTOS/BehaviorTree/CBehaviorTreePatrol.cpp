@@ -1,5 +1,6 @@
 #include "CBehaviorTreePatrol.h"
 #include "CBehaviorTree.h"
+#include "Public/DrawDebugHelpers.h"
 
 const float checkWaitTime = 3.0f;
 CBehaviorTreePatrol::~CBehaviorTreePatrol()
@@ -62,6 +63,7 @@ void CBehaviorTreePatrol::doLogic()
 	else
 	{
 		runRoad();
+		findActor();
 	}
 }
 
@@ -105,7 +107,7 @@ void CBehaviorTreePatrol::checkRoad()
 	FVector lineTrace = startLocation + forward * rayLength;
 	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), QueryParams);
 	AActor* hitObject = hitResult.GetActor();
-	_checkmovedir = NONEDIR;
+	_checkmovedir = FOWARD;
 	float minDistance = 300.0f;
 	float fowardDistance = 300.0f;
 	if (hitObject != NULL)
@@ -216,5 +218,35 @@ void CBehaviorTreePatrol::runRoad()
 		// get forward vector
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 		_aiController->AddMovementInput(Direction, -1.0);
+	}
+}
+
+void CBehaviorTreePatrol::findActor()
+{
+	FVector startLocation = _aiController->GetActorLocation();
+	FRotator playerRotation = _aiController->GetActorRotation();
+	const float rayLength = 300.0f;
+	FVector endLocation = playerRotation.Vector()*rayLength;
+	FVector lineTrace = startLocation + endLocation;
+	const UWorld* wp = _aiController->GetWorld();
+	DrawDebugLine(wp, startLocation, lineTrace, FColor(255, 0, 0),
+		false, 0.0f, 0.0f, 1.0f);
+	FHitResult hitResult;
+	FCollisionQueryParams QueryParams = FCollisionQueryParams("", false, _aiController);
+	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), QueryParams);
+	AActor* hitObject = hitResult.GetActor();
+	if (hitObject != NULL)
+	{
+		for (std::map<rti1516::ObjectInstanceHandle, AActor*>::const_iterator it = SintolRTI::EntityManager::GetInstance()->GetEnitiyActorMap().begin();
+			it != SintolRTI::EntityManager::GetInstance()->GetEnitiyActorMap().end(); it++)
+		{
+			if (hitObject == it->second)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("HitActor Name: %s"), *(hitObject->GetName()));
+				_nextstate = FOLLOW;
+				_runstate = TRANSLATE;
+				break;
+			}
+		}
 	}
 }

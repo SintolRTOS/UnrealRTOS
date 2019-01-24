@@ -32,6 +32,7 @@ private:
 	CBehaviorTreePatrol(ACharacter* _charactor, BehaviorTreeType _state);
 	void checkRoad();
 	void runRoad();
+	void findActor();
 	float _checkinvervaltime;
 	MoveDirection _checkmovedir;
 };

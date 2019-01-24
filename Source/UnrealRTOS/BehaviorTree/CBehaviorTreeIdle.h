@@ -21,6 +21,9 @@ public:
 	static CBehaviorTreeIdle* createInstance(ACharacter* _charactor, BehaviorTreeType _state);
 private:
 	CBehaviorTreeIdle(ACharacter* _charactor, BehaviorTreeType _state);
+	void checkCharactor();
+	void thinkTranslate();
+	float _thinktimedetal;
 };
 
 #endif // !_BEHAVIORTREE_IDLE_H
