@@ -1,26 +1,26 @@
 ﻿  Using 'git status' to determine working set for adaptive non-unity build.
   Performing 11 actions (9 in parallel)
-  CBehaviorTreeFollow.cpp
-  CBehaviorTreeIdle.cpp
-  CBehaviorTree.cpp
-  UnrealRTOSCharacter.gen.cpp
-  UnrealRTOSCharacter.cpp
-  UnrealRTOSGameMode.cpp
-  CBehaviorTreeNode.cpp
-  EntityManager.cpp
   CBehaviorTreePatrol.cpp
+  CBehaviorTreeNode.cpp
+  CBehaviorTree.cpp
+  EntityManager.cpp
+  UnrealRTOSGameMode.cpp
+  UnrealRTOSCharacter.gen.cpp
+  CBehaviorTreeFollow.cpp
+  UnrealRTOSCharacter.cpp
+  CBehaviorTreeIdle.cpp
 d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(40): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(40): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
-d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(40): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(40): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
-  
   
 d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(52): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(52): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
-d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(52): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
   
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(96): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(135): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(96): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(135): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(40): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
 d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(52): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
-d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(96): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
-d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(135): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
-d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(96): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
-d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(135): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(40): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
+d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\SharedPtr.h(52): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
 d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(96): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
 d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(135): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
 d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(96): warning C4668: 没有将“__cpp_rvalue_reference”定义为预处理器宏，用“0”替换“#if/#elif”
@@ -30,4 +30,4 @@ d:\sintolrtos\unrealrtos\thirdparty\include\sintolrti\VariableLengthData.h(135):
     正在创建库 D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS.lib 和对象 D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS.exp
     正在创建库 D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS.suppressed.lib 和对象 D:\SintolRTOS\UnrealRTOS\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UnrealRTOS.suppressed.exp
   Deploying UnrealRTOSEditor Win64 Development...
-  Total build time: 205.09 seconds (Local executor: 203.68 seconds)
+  Total build time: 4.51 seconds (Local executor: 3.94 seconds)

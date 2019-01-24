@@ -45,13 +45,24 @@ void CBehaviorTreePatrol::onLeaveState()
 void CBehaviorTreePatrol::update(float deteltime)
 {
 	CBehaviorTreeNode::update(deteltime);
-	if (_checkmovedir != NONE)
+	if (_checkmovedir != NONEDIR)
+	{
 		_checkinvervaltime += deteltime;
+	}
 }
 
 void CBehaviorTreePatrol::doLogic()
 {
 	CBehaviorTreeNode::doLogic();
+
+	if (_checkmovedir == NONEDIR)
+	{
+		checkRoad();
+	}
+	else
+	{
+		runRoad();
+	}
 }
 
 void CBehaviorTreePatrol::clear()
@@ -72,7 +83,7 @@ CBehaviorTreePatrol* CBehaviorTreePatrol::createInstance(ACharacter* _charactor,
 CBehaviorTreePatrol::CBehaviorTreePatrol(ACharacter* _charactor, BehaviorTreeType _state):
 	CBehaviorTreeNode(_charactor,_state),
 	_checkinvervaltime(0),
-	_checkmovedir(NONE)
+	_checkmovedir(NONEDIR)
 {
 
 }
@@ -94,7 +105,7 @@ void CBehaviorTreePatrol::checkRoad()
 	FVector lineTrace = startLocation + forward * rayLength;
 	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), QueryParams);
 	AActor* hitObject = hitResult.GetActor();
-	_checkmovedir = NONE;
+	_checkmovedir = NONEDIR;
 	float minDistance = 300.0f;
 	float fowardDistance = 300.0f;
 	if (hitObject != NULL)
@@ -149,8 +160,61 @@ void CBehaviorTreePatrol::checkRoad()
 		}
 	}
 
-	if (_checkmovedir != NONE)
+	if (_checkmovedir != NONEDIR)
 	{
 		_checkinvervaltime = 0;
+	}
+}
+
+void CBehaviorTreePatrol::runRoad()
+{
+	if (_aiController == NULL)
+		return;
+	if (checkWaitTime < _checkinvervaltime)
+	{
+		_checkmovedir = NONEDIR;
+		_checkinvervaltime = 0;
+	}
+	if (_checkmovedir == FOWARD)
+	{
+		// find out which way is forward
+		const FRotator Rotation = _aiController->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+		// get forward vector
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		_aiController->AddMovementInput(Direction, 1.0);
+	}
+	else if (_checkmovedir == LEFT)
+	{
+		// find out which way is right
+		const FRotator Rotation = _aiController->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+		// get right vector 
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		// add movement in that direction
+		_aiController->AddMovementInput(Direction, -1.0f);
+	}
+	else if (_checkmovedir == RIGHT)
+	{
+		// find out which way is right
+		const FRotator Rotation = _aiController->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+		// get right vector 
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		// add movement in that direction
+		_aiController->AddMovementInput(Direction, 1.0f);
+	}
+	else if (_checkmovedir == BACK)
+	{
+		// find out which way is forward
+		const FRotator Rotation = _aiController->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+		// get forward vector
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		_aiController->AddMovementInput(Direction, -1.0);
 	}
 }

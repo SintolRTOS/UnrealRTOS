@@ -4,7 +4,7 @@
 
 enum MoveDirection
 {
-	NONE,
+	NONEDIR,
 	FOWARD,
 	BACK,
 	LEFT,
@@ -31,6 +31,7 @@ public:
 private:
 	CBehaviorTreePatrol(ACharacter* _charactor, BehaviorTreeType _state);
 	void checkRoad();
+	void runRoad();
 	float _checkinvervaltime;
 	MoveDirection _checkmovedir;
 };
