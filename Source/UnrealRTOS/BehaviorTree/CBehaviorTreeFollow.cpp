@@ -82,8 +82,8 @@ void CBehaviorTreeFollow::doLogic()
 		else
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Lost Follow Target!"));
-			_runstate = TRANSLATE;
 			int randvalue =  FMath::FRand() * 100;
+			_runstate = TRANSLATE;
 			if (randvalue <= 10)
 			{
 				_nextstate = IDLE;

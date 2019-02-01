@@ -1,5 +1,5 @@
-#include "CoreMinimal.h"
 #include "CBehaviorTreeIdle.h"
+#include "CoreMinimal.h"
 #include "CBehaviorTree.h"
 #include "Public/DrawDebugHelpers.h"
 #include "../EntityManager.h"
@@ -55,6 +55,7 @@ void CBehaviorTreeIdle::update(float deteltime)
 void CBehaviorTreeIdle::doLogic()
 {
 	CBehaviorTreeNode::doLogic();
+	thinkTranslate();
 	checkCharactor();
 }
 
@@ -114,10 +115,10 @@ void CBehaviorTreeIdle::thinkTranslate()
 {
 	if (_thinktimedetal < _thinkwaittime)
 		return;
-	_runstate = TRANSLATE;
 	int randvalue = FMath::FRand() * 100;
 	if (randvalue <= 10)
 	{
+		_runstate = TRANSLATE;
 		_nextstate = CHECKTASK;
 	}
 	_thinktimedetal = 0;

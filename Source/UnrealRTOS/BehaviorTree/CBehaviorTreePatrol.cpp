@@ -46,25 +46,16 @@ void CBehaviorTreePatrol::onLeaveState()
 void CBehaviorTreePatrol::update(float deteltime)
 {
 	CBehaviorTreeNode::update(deteltime);
-	if (_checkmovedir != NONEDIR)
-	{
-		_checkinvervaltime += deteltime;
-	}
+	_checkinvervaltime += deteltime;
 }
 
 void CBehaviorTreePatrol::doLogic()
 {
 	CBehaviorTreeNode::doLogic();
-
-	if (_checkmovedir == NONEDIR)
-	{
-		checkRoad();
-	}
-	else
-	{
-		runRoad();
-		findActor();
-	}
+	checkRoad();
+	runRoad();
+	checkJumpAndTurn();
+	findActor();
 }
 
 void CBehaviorTreePatrol::clear()
@@ -94,72 +85,78 @@ void CBehaviorTreePatrol::checkRoad()
 {
 	if (_aiController == NULL)
 		return;
+	if (_checkinvervaltime < checkWaitTime)
+	{
+		return;
+	}
 	FVector startLocation = _aiController->GetActorLocation();
 	FRotator playerRotation = _aiController->GetActorRotation();
-	const float rayLength = 300.0f;
+	const float rayLength = 1000.0f;
 	FVector forward = _aiController->GetActorForwardVector();
 	FVector back = -forward;
 	FVector right = _aiController->GetActorRightVector();
 	FVector left = -right;
+	_forwardCheckDir = forward;
+	_rightCheckDir = right;
 	FHitResult hitResult;
 	FCollisionQueryParams QueryParams = FCollisionQueryParams("", false, _aiController);
 	const UWorld* wp = _aiController->GetWorld();
 	FVector lineTrace = startLocation + forward * rayLength;
-	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), QueryParams);
+	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_WorldStatic), QueryParams);
 	AActor* hitObject = hitResult.GetActor();
 	_checkmovedir = FOWARD;
-	float minDistance = 300.0f;
-	float fowardDistance = 300.0f;
+	float minDistance = 0.0f;
+	float fowardDistance = 600.0f;
 	if (hitObject != NULL)
 	{
 		fowardDistance = hitResult.Distance;
-		if (fowardDistance < minDistance)
-		{
-			minDistance = fowardDistance;
-			_checkmovedir = FOWARD;
-		}
 	}
-
-	float backDistance = 300.0f;
-	lineTrace = startLocation + back * rayLength;
-	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), QueryParams);
-	hitObject = hitResult.GetActor();
-	if (hitObject != NULL)
+	if (fowardDistance > minDistance)
 	{
-		backDistance = hitResult.Distance;
-		if (backDistance < minDistance)
-		{
-			minDistance = backDistance;
-			_checkmovedir = BACK;
-		}
+		minDistance = fowardDistance;
+		_checkmovedir = FOWARD;
 	}
 
-	float rightDistance = 300.0f;
+	float rightDistance = 600.0f;
 	lineTrace = startLocation + right * rayLength;
-	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), QueryParams);
+	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_WorldStatic), QueryParams);
 	hitObject = hitResult.GetActor();
 	if (hitObject != NULL)
 	{
 		rightDistance = hitResult.Distance;
-		if (rightDistance < minDistance)
-		{
-			minDistance = rightDistance;
-			_checkmovedir = RIGHT;
-		}
+	}
+	if (rightDistance > minDistance)
+	{
+		minDistance = rightDistance;
+		_checkmovedir = RIGHT;
 	}
 
-	float leftDistance = 300.0f;
+	float backDistance = 600.0f;
+	lineTrace = startLocation + back * rayLength;
+	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_WorldStatic), QueryParams);
+	hitObject = hitResult.GetActor();
+	if (hitObject != NULL)
+	{
+		backDistance = hitResult.Distance;
+	}
+	if (backDistance > minDistance)
+	{
+		minDistance = backDistance;
+		_checkmovedir = BACK;
+	}
+
+	float leftDistance = 600.0f;
 	lineTrace = startLocation + left * rayLength;
-	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_PhysicsBody), QueryParams);
+	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_WorldStatic), QueryParams);
 	hitObject = hitResult.GetActor();
 	if (hitObject != NULL)
 	{
 		leftDistance = hitResult.Distance;
-		if (leftDistance < minDistance)
-		{
-			minDistance = leftDistance;
-			_checkmovedir = LEFT;
-		}
+	}
+	if (leftDistance > minDistance)
+	{
+		minDistance = leftDistance;
+		_checkmovedir = LEFT;
 	}
 
 	if (_checkmovedir != NONEDIR)
@@ -172,52 +169,52 @@ void CBehaviorTreePatrol::runRoad()
 {
 	if (_aiController == NULL)
 		return;
-	if (checkWaitTime < _checkinvervaltime)
-	{
-		_checkmovedir = NONEDIR;
-		_checkinvervaltime = 0;
-	}
 	if (_checkmovedir == FOWARD)
 	{
 		// find out which way is forward
-		const FRotator Rotation = _aiController->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
-
-		// get forward vector
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		_aiController->AddMovementInput(Direction, 1.0);
+		_aiController->AddMovementInput(_forwardCheckDir, 1.0);
 	}
 	else if (_checkmovedir == LEFT)
 	{
 		// find out which way is right
-		const FRotator Rotation = _aiController->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
-
-		// get right vector 
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		// add movement in that direction
-		_aiController->AddMovementInput(Direction, -1.0f);
+		_aiController->AddMovementInput(_rightCheckDir, -1.0f);
 	}
 	else if (_checkmovedir == RIGHT)
 	{
-		// find out which way is right
-		const FRotator Rotation = _aiController->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
-
-		// get right vector 
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		// add movement in that direction
-		_aiController->AddMovementInput(Direction, 1.0f);
+		_aiController->AddMovementInput(_rightCheckDir, 1.0f);
 	}
 	else if (_checkmovedir == BACK)
 	{
-		// find out which way is forward
-		const FRotator Rotation = _aiController->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
+		_aiController->AddMovementInput(_forwardCheckDir, -1.0);
+	}
+}
 
-		// get forward vector
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		_aiController->AddMovementInput(Direction, -1.0);
+void CBehaviorTreePatrol::checkJumpAndTurn()
+{
+	if (_aiController == NULL)
+		return;
+	FVector startLocation = _aiController->GetActorLocation();
+	FRotator playerRotation = _aiController->GetActorRotation();
+	const float rayLength = 60.0f;
+	FVector forward = _aiController->GetActorForwardVector();
+	FHitResult hitResult;
+	FCollisionQueryParams QueryParams = FCollisionQueryParams("", false, _aiController);
+	const UWorld* wp = _aiController->GetWorld();
+	FVector lineTrace = startLocation + forward * rayLength;
+	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_WorldStatic), QueryParams);
+	AActor* hitObject = hitResult.GetActor();
+	if (hitObject != NULL)
+	{
+		if (hitObject->Tags.Num() != 0 && hitObject->Tags[0] == "jump")
+		{
+			_aiController->Jump();
+			return;
+		}
+		_checkinvervaltime = checkWaitTime + 1.0f;
+		checkRoad();
+		return;
 	}
 }
 
@@ -229,7 +226,7 @@ void CBehaviorTreePatrol::findActor()
 	FVector endLocation = playerRotation.Vector()*rayLength;
 	FVector lineTrace = startLocation + endLocation;
 	const UWorld* wp = _aiController->GetWorld();
-	DrawDebugLine(wp, startLocation, lineTrace, FColor(255, 0, 0),
+	DrawDebugLine(wp, startLocation, lineTrace, FColor(0, 0, 255),
 		false, 0.0f, 0.0f, 1.0f);
 	FHitResult hitResult;
 	FCollisionQueryParams QueryParams = FCollisionQueryParams("", false, _aiController);

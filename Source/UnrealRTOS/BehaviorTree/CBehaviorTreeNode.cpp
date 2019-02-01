@@ -120,6 +120,11 @@ BehaviorNodeState CBehaviorTreeNode::getRunState()
 	return _runstate;
 }
 
+BehaviorTreeType CBehaviorTreeNode::getNextNodeType()
+{
+	return _nextstate;
+}
+
 ACharacter* CBehaviorTreeNode::getTargetCharactor()
 {
 	return _target;

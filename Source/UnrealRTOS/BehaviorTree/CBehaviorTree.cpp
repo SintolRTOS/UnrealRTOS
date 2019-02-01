@@ -24,11 +24,14 @@ void CBehaviorTree::update(float detaltime)
 		_curnode->update(detaltime);
 		if (_curnode->getRunState() == TRANSLATE)
 		{
-			translateTo(FOLLOW, 0,_curnode->getTargetCharactor());
-		}
-		else if (_curnode->getRunState() == CHECKTASK)
-		{
-			translateTo(CHECKTASK, 1);
+			if (_curnode->getNextNodeType() == FOLLOW)
+			{
+				translateTo(FOLLOW, 0, _curnode->getTargetCharactor());
+			}
+			else if (_curnode->getNextNodeType() == CHECKTASK)
+			{
+				translateTo(CHECKTASK, 1);
+			}
 		}
 	}
 }

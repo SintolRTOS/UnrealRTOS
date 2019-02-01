@@ -41,6 +41,7 @@ public:
 	virtual void clear();
 	virtual void setTargetCharactor(ACharacter* _value);
 	BehaviorNodeState getRunState();
+	BehaviorTreeType getNextNodeType();
 	ACharacter* getTargetCharactor();
 protected:
 	bool _isstarted;
@@ -49,6 +50,8 @@ protected:
 	BehaviorTreeType _nodestate;
 	BehaviorTreeType _nextstate;
 	BehaviorNodeState _runstate;
+	FVector _forwardCheckDir;
+	FVector _rightCheckDir;
 	float _timedetal;
 	float _invervaltime;
 	float _waittime;
