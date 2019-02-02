@@ -21,5 +21,6 @@ public:
 private:
 	CBehaviorTreeFollow(ACharacter* _charactor, BehaviorTreeType _state, ACharacter* _targetvalue);
 	bool checkMaxFollowDistance();
+	void checkJump();
 };
 #endif

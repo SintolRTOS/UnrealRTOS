@@ -105,6 +105,7 @@ void CBehaviorTreeIdle::checkCharactor()
 				UE_LOG(LogTemp, Warning, TEXT("HitActor Name: %s"), *(hitObject->GetName()));
 				_nextstate = FOLLOW;
 				_runstate = TRANSLATE;
+				_target = (ACharacter*)hitObject;
 				break;
 			}
 		}

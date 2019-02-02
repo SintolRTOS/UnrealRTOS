@@ -178,7 +178,7 @@ void AUnrealRTOSCharacter::Tick(float DeltaSeconds)
 	rti1516::VariableLengthData tag = toVariableLengthData(_fedTypeName);
 	_attributeValueMap[_characterAttributeHandle] = toVariableLengthData(_attribution);
 	SintolRTI::SDKManager::GetInstance()->updateAttributeValues(_charactorObjInstance, _attributeValueMap, tag);
-	SintolRTI::SDKManager::GetInstance()->Update(0.001);
+	SintolRTI::SDKManager::GetInstance()->Update(0.00001);
 	_charactorBehaviorTree.update(DeltaSeconds);
 }
 

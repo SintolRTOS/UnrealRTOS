@@ -3,7 +3,7 @@
 #include "Public/DrawDebugHelpers.h"
 
 
-const static float MaxFollowDistance = 600.0f;
+const static float MaxFollowDistance = 2000.0f;
 
 CBehaviorTreeFollow::~CBehaviorTreeFollow()
 {
@@ -59,22 +59,13 @@ void CBehaviorTreeFollow::doLogic()
 		FVector _tartLocation = _target->GetActorLocation();
 		FVector _localLocation = _aiController->GetActorLocation();
 		FVector _followFoword = _tartLocation - _localLocation;
-		FVector _localFoword = _aiController->GetActorForwardVector();
-		_localFoword.Z = 0;
-		_followFoword.Z = 0;
-		_localFoword.Normalize();
-		_followFoword.Normalize();
-		float _cosValue = FVector::DotProduct(_localFoword, _followFoword);
-		float rotateAngle = FMath::Acos(_cosValue);
-		FRotator _localrotation = _aiController->GetActorRotation();
-		_localrotation.Yaw += rotateAngle;
-		_aiController->FaceRotation(_localrotation, _timedetal);
-		_aiController->AddMovementInput(_aiController->GetActorForwardVector());
 
+		_aiController->AddMovementInput(_followFoword, 1.0);
+		checkJump();
 		bool checkFollow = checkMaxFollowDistance();
 		if (checkFollow)
 		{
-			FVector lineTrace = _localLocation + _tartLocation;
+			FVector lineTrace = _tartLocation;
 			const UWorld* wp = _aiController->GetWorld();
 			DrawDebugLine(wp, _localLocation, lineTrace, FColor(0, 255, 0),
 				false, 0.0f, 0.0f, 1.0f);
@@ -125,4 +116,29 @@ bool CBehaviorTreeFollow::checkMaxFollowDistance()
 	if (_curFollowDis > MaxFollowDistance)
 		return false;
 	return true;
+}
+
+void CBehaviorTreeFollow::checkJump()
+{
+	if (_aiController == NULL)
+		return;
+	FVector startLocation = _aiController->GetActorLocation();
+	FRotator playerRotation = _aiController->GetActorRotation();
+	const float rayLength = 60.0f;
+	FVector forward = _aiController->GetActorForwardVector();
+	FHitResult hitResult;
+	FCollisionQueryParams QueryParams = FCollisionQueryParams("", false, _aiController);
+	const UWorld* wp = _aiController->GetWorld();
+	FVector lineTrace = startLocation + forward * rayLength;
+	wp->LineTraceSingleByObjectType(hitResult, startLocation, lineTrace, FCollisionObjectQueryParams(ECollisionChannel::ECC_WorldStatic), QueryParams);
+	AActor* hitObject = hitResult.GetActor();
+	if (hitObject != NULL)
+	{
+		if (hitObject->Tags.Num() != 0 && hitObject->Tags[0] == "jump")
+		{
+			_aiController->Jump();
+			return;
+		}
+		return;
+	}
 }
