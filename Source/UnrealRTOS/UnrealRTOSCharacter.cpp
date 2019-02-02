@@ -54,6 +54,7 @@ AUnrealRTOSCharacter::AUnrealRTOSCharacter():
 void AUnrealRTOSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	//DrawAboutInfomation();
 	UGameUserSettings::GetGameUserSettings()->SetFullscreenMode(EWindowMode::Windowed);
 	_charactorBehaviorTree.setCharactor(this);
 	_charactorBehaviorTree.initBehaviorTrees();
@@ -242,6 +243,21 @@ rti1516::VariableLengthData AUnrealRTOSCharacter::toVariableLengthData(const std
 	rti1516::VariableLengthData variableLengthData;
 	variableLengthData.setData(s.data(), (unsigned long)s.size());
 	return variableLengthData;
+}
+
+void AUnrealRTOSCharacter::DrawAboutInfomation()
+{
+	FString abouctInformation =
+L"|----------------------------------------------------------------------------------------------------------|\r\n\
+|                                        Welcome to SintolRTOS                                             |\r\n\
+|                                      It's created by wangjingyi                                          |\r\n\
+|                                      Email:langkexiaoyi@gmail.com                                        |\r\n\
+|                                          Wechat:18513285865                                              |\r\n\
+|                        It can help you create large-scale distributed computing                          |\r\n\
+|                   It is the basic calculation of distributed cluster artificial intelligence             |\r\n\
+|                         You can use sintolsdk to link node for creating and joining fed                  |\r\n\
+|----------------------------------------------------------------------------------------------------------|\r\n";
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, abouctInformation);
 }
 
 void AUnrealRTOSCharacter::OnResetVR()

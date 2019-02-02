@@ -2,6 +2,7 @@
 
 #include "UnrealRTOSGameMode.h"
 #include "UnrealRTOSCharacter.h"
+#include "AboutHUD.h"
 #include "UObject/ConstructorHelpers.h"
 
 AUnrealRTOSGameMode::AUnrealRTOSGameMode()
@@ -11,5 +12,10 @@ AUnrealRTOSGameMode::AUnrealRTOSGameMode()
 	if (PlayerPawnBPClass.Class != NULL)
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
+	}
+	static ConstructorHelpers::FClassFinder<AHUD> RTOSHUDClass(TEXT("/Game/ThirdPersonCPP/Blueprints/RTOSAboutHUD"));
+	if (RTOSHUDClass.Class != NULL)
+	{
+		HUDClass = RTOSHUDClass.Class;
 	}
 }

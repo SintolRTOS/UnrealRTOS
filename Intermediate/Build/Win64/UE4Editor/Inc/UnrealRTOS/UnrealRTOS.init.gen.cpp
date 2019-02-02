@@ -19,8 +19,8 @@ void EmptyLinkFunctionForGeneratedCodeUnrealRTOS_init() {}
 			static const UE4CodeGen_Private::FPackageParams PackageParams = {
 				"/Script/UnrealRTOS",
 				PKG_CompiledIn | 0x00000000,
-				0x647E3877,
-				0x2D558168,
+				0x54C0C1CE,
+				0x0DC1C2D4,
 				nullptr, 0,
 				METADATA_PARAMS(nullptr, 0)
 			};

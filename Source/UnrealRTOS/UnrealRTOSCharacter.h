@@ -52,6 +52,8 @@ protected:
 	CBehaviorTree _charactorBehaviorTree;
 	SintolRTI::UnrealRTOSAmbassador* _ambassador;
 
+	void DrawAboutInfomation();
+
 	/** Resets HMD orientation in VR. */
 	void OnResetVR();
 
