@@ -56,6 +56,7 @@ void AUnrealRTOSCharacter::BeginPlay()
 	Super::BeginPlay();
 	//DrawAboutInfomation();
 	UGameUserSettings::GetGameUserSettings()->SetFullscreenMode(EWindowMode::Windowed);
+	GetWorldTimerManager().SetTimer(FixUpdateHandle, this, &AUnrealRTOSCharacter::OnFixedUpdate, 0.01, true);
 	_charactorBehaviorTree.setCharactor(this);
 	_charactorBehaviorTree.initBehaviorTrees();
 	_charactorBehaviorTree.startBehaviorNode(IDLE);
@@ -160,32 +161,13 @@ void AUnrealRTOSCharacter::BeginPlay()
 void AUnrealRTOSCharacter::Tick(float DeltaSeconds)
 {
 	_invervalTime += DeltaSeconds;
-	FVector _charactorLocation = GetActorLocation();
-	FString _locationstr = _charactorLocation.ToString();
-	FRotator _charactorRotation = GetActorRotation();
-	FString _rotationstr = _charactorRotation.ToString();
-	FString _velocity = GetVelocity().ToString();
-	std::string _rotationattri(TCHAR_TO_UTF8(*_rotationstr));
-	TSharedPtr<FJsonObject> _jsonObj = MakeShareable(new FJsonObject);
-	_jsonObj->SetStringField("location", _locationstr);
-	_jsonObj->SetStringField("rotation", _rotationstr);
-	_jsonObj->SetStringField("velocity", _velocity);
-	_jsonObj->SetNumberField("movemode", GetCharacterMovement()->GetGroundMovementMode());
-	FString _jsonAttribution;
-	TSharedRef<TJsonWriter<TCHAR>> t_writer = TJsonWriterFactory<>::Create(&_jsonAttribution);
-	FJsonSerializer::Serialize(_jsonObj.ToSharedRef(), t_writer);
-	std::string _attribution(TCHAR_TO_UTF8(*_jsonAttribution));
-	rti1516::AttributeHandleValueMap _attributeValueMap;
-	rti1516::VariableLengthData tag = toVariableLengthData(_fedTypeName);
-	_attributeValueMap[_characterAttributeHandle] = toVariableLengthData(_attribution);
-	SintolRTI::SDKManager::GetInstance()->updateAttributeValues(_charactorObjInstance, _attributeValueMap, tag);
-	SintolRTI::SDKManager::GetInstance()->Update(0.00001);
 	_charactorBehaviorTree.update(DeltaSeconds);
 }
 
 void AUnrealRTOSCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
+	GetWorldTimerManager().ClearTimer(FixUpdateHandle);
 	try {
 		SintolRTI::SDKManager::GetInstance()->deleteObjectInstance(_charactorObjInstance, toVariableLengthData("MultiAI_01"));
 		SintolRTI::SDKManager::GetInstance()->unsubscribeObjectClass(_characterObjHandle);
@@ -243,6 +225,30 @@ rti1516::VariableLengthData AUnrealRTOSCharacter::toVariableLengthData(const std
 	rti1516::VariableLengthData variableLengthData;
 	variableLengthData.setData(s.data(), (unsigned long)s.size());
 	return variableLengthData;
+}
+
+void AUnrealRTOSCharacter::OnFixedUpdate()
+{
+	FVector _charactorLocation = GetActorLocation();
+	FString _locationstr = _charactorLocation.ToString();
+	FRotator _charactorRotation = GetActorRotation();
+	FString _rotationstr = _charactorRotation.ToString();
+	FString _velocity = GetVelocity().ToString();
+	std::string _rotationattri(TCHAR_TO_UTF8(*_rotationstr));
+	TSharedPtr<FJsonObject> _jsonObj = MakeShareable(new FJsonObject);
+	_jsonObj->SetStringField("location", _locationstr);
+	_jsonObj->SetStringField("rotation", _rotationstr);
+	_jsonObj->SetStringField("velocity", _velocity);
+	_jsonObj->SetNumberField("movemode", GetCharacterMovement()->GetGroundMovementMode());
+	FString _jsonAttribution;
+	TSharedRef<TJsonWriter<TCHAR>> t_writer = TJsonWriterFactory<>::Create(&_jsonAttribution);
+	FJsonSerializer::Serialize(_jsonObj.ToSharedRef(), t_writer);
+	std::string _attribution(TCHAR_TO_UTF8(*_jsonAttribution));
+	rti1516::AttributeHandleValueMap _attributeValueMap;
+	rti1516::VariableLengthData tag = toVariableLengthData(_fedTypeName);
+	_attributeValueMap[_characterAttributeHandle] = toVariableLengthData(_attribution);
+	SintolRTI::SDKManager::GetInstance()->updateAttributeValues(_charactorObjInstance, _attributeValueMap, tag);
+	SintolRTI::SDKManager::GetInstance()->Update(0.0001);
 }
 
 void AUnrealRTOSCharacter::DrawAboutInfomation()

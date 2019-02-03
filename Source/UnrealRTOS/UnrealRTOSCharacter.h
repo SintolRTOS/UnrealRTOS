@@ -42,6 +42,8 @@ public:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
+	void OnFixedUpdate();
+
 protected:
 
 	float _invervalTime;
@@ -51,6 +53,7 @@ protected:
 	rti1516::ObjectInstanceHandle _charactorObjInstance;
 	CBehaviorTree _charactorBehaviorTree;
 	SintolRTI::UnrealRTOSAmbassador* _ambassador;
+	FTimerHandle FixUpdateHandle;
 
 	void DrawAboutInfomation();
 
